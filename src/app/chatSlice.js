@@ -25,8 +25,7 @@ import { createSlice, } from "@reduxjs/toolkit";
 const initialState={
     accessToken:"",
     userEmail:"",
-    // chats:[{}],//all previous chats title
-    // chatHistory:[{}]//whole chat conversation
+    chatIdFromFirebase :""
 }
 
 export const chatSlice=createSlice({
@@ -40,11 +39,13 @@ export const chatSlice=createSlice({
             state.userEmail=action.payload
         }
         ,
-        
+        updateChatId:(state,action)=>{
+            state.chatIdFromFirebase=action.payload;
+        }
 
     }
 })
 
-export const {updateAccessToken,updateUser}=chatSlice.actions
+export const {updateAccessToken,updateUser,updateChatId}=chatSlice.actions
 
 export default chatSlice.reducer;

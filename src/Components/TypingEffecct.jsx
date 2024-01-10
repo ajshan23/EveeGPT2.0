@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 
-const TypingEffect = ({ text }) => {
+const TypingEffect = ({ text,isUpdate }) => {
   const [displayedText, setDisplayedText] = useState('');
   const [currentIndex, setCurrentIndex] = useState(0);
     const chatContainerRef=useRef(null)
@@ -25,7 +25,10 @@ const TypingEffect = ({ text }) => {
     return () => clearInterval(typingInterval);
   }, [text, currentIndex]);
 
-  return <span ref={chatContainerRef} className=' whitespace-pre-wrap' dangerouslySetInnerHTML={{ __html: displayedText }} />;
+  return (
+    isUpdate?<span ref={chatContainerRef} className='whitespace-pre-wrap' dangerouslySetInnerHTML={{__html:text}}/>:
+    <span ref={chatContainerRef} className=' whitespace-pre-wrap' dangerouslySetInnerHTML={{ __html: displayedText }} />
+  )
 };
 
 export default TypingEffect;
