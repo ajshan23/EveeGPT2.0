@@ -4,6 +4,7 @@ import { signOut } from "firebase/auth";
 import {
   addDoc,
   collection,
+  deleteDoc,
   doc,
   getDocs,
   updateDoc,
@@ -13,10 +14,11 @@ import { query } from "firebase/database";
 import { useDispatch, useSelector } from "react-redux";
 import { updateAccessToken, updateChatId, updateUser } from "../app/chatSlice";
 import { useNavigate } from "react-router-dom";
-import logo from "../image/DIALOGIX.png";
+import logo from "../image/eveegpt.png";
 import userLogo from "../image/user.png";
 import sendIcon from "../image/Vector.png";
 import roboIcon from "../image/robotLogo.png";
+import { MdDelete } from "react-icons/md";
 import { FaPlus } from "react-icons/fa";
 
 import "./Style.css";
@@ -149,23 +151,6 @@ const Home = () => {
       console.log("error occured whiile getting previous chats:", error);
     }
   };
-  const getList = async () => {
-    let res = await getDocs(query(dbRef));
-    if (Array.isArray(res.docs)) {
-      res.docs.map((item) => {
-        setTest((prev) => [...prev, { id: item.id, ...item.data() }]);
-      });
-    }
-    test.map((ele) => console.log(ele));
-    const aj = test.filter((ele) => ele.userid === currentUseremail);
-    aj.map((ele) => console.log("second", ele));
-
-    const q = query(dbRef, where("email", "==", currentUseremail));
-    const querySnapshot = await getDocs(q);
-    querySnapshot.forEach((docu) => {
-      console.log(docu.id, "=>", docu.data());
-    });
-  };
 
   const run = async () => {
     setLoading(true);
@@ -255,6 +240,16 @@ const Home = () => {
     setShowProfile((prev) => !prev);
   };
 
+
+  const removeFromFirebaseHandler=async(id)=>{
+    let check=confirm("Do you want to delete this item?")
+
+    if (!check) {
+      return null
+    }
+    await  deleteDoc(doc(db, "users", id)).then(setAllChatHistory([]),getUserPreviousChats()).catch((e)=>console.log("Error at removeFromFirebaseHandler"))
+  }
+
   return (
     <div className=" text-white overflow-hidden">
       <div className="bg-[#181818]">
@@ -283,10 +278,22 @@ const Home = () => {
                 />
                 {showProfile ? (
                   <div className="absolute right-0 top-16 sm:right-20 w-52 h-24 bg-[#212121] rounded-xl flex flex-col justify-start items-center">
-                    <div className="flex pt-3"><div className="text-[#FFDC27]"> User:</div>Ajmal</div>
+                    <div className="flex pt-3">
+                      <div className="text-[#FFDC27]"> User:</div>Ajmal
+                    </div>
                     <div className="pt-3 space-x-3">
-                      <button className="bg-green-800 px-2 rounded-lg" onClick={showProfileHandler}>Back</button>
-                      <button className="bg-red-800 px-2 rounded-lg" onClick={handleLogout}>Logout</button>
+                      <button
+                        className="bg-green-800 px-2 rounded-lg"
+                        onClick={showProfileHandler}
+                      >
+                        Back
+                      </button>
+                      <button
+                        className="bg-red-800 px-2 rounded-lg"
+                        onClick={handleLogout}
+                      >
+                        Logout
+                      </button>
                     </div>
                   </div>
                 ) : (
@@ -460,13 +467,17 @@ const Home = () => {
                               key={index}
                             >
                               {/* <div className="text-sm">Today</div> */}
-                              <div
-                                className="w-[297px] h-[56px] bg-[#6d6c6c] rounded-xl flex items-center px-3 "
-                                onClick={(e) =>
-                                  addChatFromFirebaseHandler(singlechat)
-                                }
-                              >
-                                {singlechat.title}
+                              <div className="w-[297px] h-[56px] bg-[#6d6c6c] rounded-xl flex items-center px-3 justify-between ">
+                                <div className="cursor-pointer w-full h-full flex items-center"
+                                  onClick={(e) =>
+                                    addChatFromFirebaseHandler(singlechat)
+                                  }
+                                >
+                                  {singlechat.title}
+                                </div>
+                                <div>
+                                  <MdDelete size={20} color="yellow" onClick={(e)=>removeFromFirebaseHandler(singlechat.id)}/>
+                                </div>
                               </div>
                             </div>
                           ))}
