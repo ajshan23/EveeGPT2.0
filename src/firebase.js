@@ -11,18 +11,18 @@ import { getFirestore} from "firebase/firestore"
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyBeTll06CxUxTKYe8kkBhFAg875kec5Y1M" ,
-  authDomain: "eveegpt.firebaseapp.com" ,
-  projectId: "eveegpt" ,
-  storageBucket:"eveegpt.appspot.com" ,
-  messagingSenderId:"952423566741" ,
-  appId: "1:952423566741:web:474a071a72af221ebdba9c",
-  measurementId: "G-NKBZJEGBLY"
+  apiKey: "AIzaSyCRdfxMmUtRGulpqA8tFFJ8dFqBhif1TjE",
+  authDomain: "evee-e2737.firebaseapp.com",
+  projectId: "evee-e2737",
+  storageBucket: "evee-e2737.appspot.com",
+  messagingSenderId: "86651358251",
+  appId: "1:86651358251:web:abc15362472fb4d802ee6e",
+  measurementId: "G-LLC8J5BPFD"
 };
+
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
 
 export const db=getFirestore(app)
 export const auth=getAuth()

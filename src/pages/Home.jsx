@@ -269,7 +269,7 @@ const Home = () => {
                 <div className="hidden sm:flex ">New Chat</div>
               </button>
               <div className="flex justify-center items-center gap-3">
-                <div className="hidden sm:flex">Ajmal</div>
+                <div className="hidden sm:flex"></div>
                 <img
                   src={userLogo}
                   alt=""
@@ -279,7 +279,7 @@ const Home = () => {
                 {showProfile ? (
                   <div className="absolute right-0 top-16 sm:right-20 w-52 h-24 bg-[#212121] rounded-xl flex flex-col justify-start items-center">
                     <div className="flex pt-3">
-                      <div className="text-[#FFDC27]"> User:</div>Ajmal
+                      <div className="text-[#FFDC27]"> User</div>
                     </div>
                     <div className="pt-3 space-x-3">
                       <button
