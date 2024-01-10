@@ -28,7 +28,7 @@ import TypingEffect from "../Components/TypingEffecct";
 import { ClipLoader } from "react-spinners";
 
 const Home = () => {
-  const genAI = new GoogleGenerativeAI(String("AIzaSyDXvAH6kGox5eHXlTkStS4BLNuomK6-CMs"));
+  const genAI = new GoogleGenerativeAI(String(import.meta.env.VITE_APIKEY));
   const dbRef = collection(db, "users");
   const [loading, setLoading] = useState(false);
   const [test, setTest] = useState([]);

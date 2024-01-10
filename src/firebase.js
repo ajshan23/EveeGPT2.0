@@ -11,13 +11,7 @@ import { getFirestore} from "firebase/firestore"
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyCRdfxMmUtRGulpqA8tFFJ8dFqBhif1TjE",
-  authDomain: "evee-e2737.firebaseapp.com",
-  projectId: "evee-e2737",
-  storageBucket: "evee-e2737.appspot.com",
-  messagingSenderId: "86651358251",
-  appId: "1:86651358251:web:abc15362472fb4d802ee6e",
-  measurementId: "G-LLC8J5BPFD"
+  //config
 };
 
 
