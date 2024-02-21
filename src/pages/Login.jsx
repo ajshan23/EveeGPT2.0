@@ -25,6 +25,10 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if ([password,email].some((field)=>field.trim()==="")) {
+      return alert("All fields are required")
+    }
+    
     try {
       const userCredentials = await signInWithEmailAndPassword(
         auth,
@@ -92,7 +96,7 @@ const Login = () => {
               <button className="w-full h-full text-black font-semibold" onClick={handleSubmit}>Sign in</button>
             </div>
             <div className="flex text-xs text-[#adadad] justify-center">
-              Do have an accout? <Link to="/signup">Sing Up</Link>
+              Do have an accout? <Link to="/signup">Sign Up</Link>
             </div>
             <div></div>
           </div>

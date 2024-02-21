@@ -23,14 +23,17 @@ const Signup = () => {
       )
     ) {
       alert("all fields are required");
-    } else {
+    } 
       if (password !== confirm) {
         alert("both password must be same");
         setPassword("");
         setConfirm("");
         return null;
       }
-    }
+      if (password.length<6) {
+        return alert("Password:Mininum 6 characters required")
+      }
+    
 
     createUserWithEmailAndPassword(auth, email, password,username)
       .then((response) => {
